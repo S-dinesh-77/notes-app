@@ -48,22 +48,7 @@ const NoteSchema = new mongoose.Schema({
 });
 const Note = mongoose.model('Note', NoteSchema);
 
-const authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) {
-    console.error('Token missing');
-    return res.status(401).json({ message: 'Token missing' });
-  }
 
-  jwt.verify(token, process.env.JWT_SECRET || 'default_secret', (err, user) => {
-    if (err) {
-      console.error('Token verification error:', err.message);
-      return res.status(403).json({ message: 'Invalid or expired token' });
-    }
-    req.user = user; // Should include userId
-    next();
-  });
-};
 
 
 // Routes
@@ -113,7 +98,22 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
+const authenticate = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    console.error('Token missing');
+    return res.status(401).json({ message: 'Token missing' });
+  }
 
+  jwt.verify(token, process.env.JWT_SECRET || 'default_secret', (err, user) => {
+    if (err) {
+      console.error('Token verification error:', err.message);
+      return res.status(403).json({ message: 'Invalid or expired token' });
+    }
+    req.user = user; // Should include userId
+    next();
+  });
+};
 
 // Notes Routes
 app.get('/notes', authenticate, async (req, res) => {
@@ -131,32 +131,6 @@ app.post('/notes', authenticate, async (req, res) => {
       ...req.body,
       userId: req.user.userId,
     });
-    const savedNote = await note.save();
-    res.status(201).json(savedNote);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to create note', error: err.message });
-  }
-});
-
-
-
-// Notes Routes
-
-// Notes Routes (Backend)
-app.get('/notes', authenticate, async (req, res) => {
-  try {
-    // Fetch notes for the authenticated user using their userId
-    const notes = await Note.find({ userId: req.user.userId });
-    res.json(notes);  // Send the notes data to the frontend
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to fetch notes', error: err.message });
-  }
-});
-
-
-app.post('/notes', authenticate, async (req, res) => {
-  try {
-    const note = new Note({ ...req.body, userId: req.user.userId });
     const savedNote = await note.save();
     res.status(201).json(savedNote);
   } catch (err) {
