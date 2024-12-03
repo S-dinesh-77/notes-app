@@ -24,10 +24,11 @@ function Notes() {
     
       try {
         const response = await axios.get('http://localhost:5000/notes', {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
+         
+      });
+      console.log(response.data)
 
-
-        });
         setNotes(response.data);
       } catch (error) {
         if (error.response?.status === 401) {
