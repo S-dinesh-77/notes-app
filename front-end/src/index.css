@@ -295,7 +295,7 @@ form button:hover {
 }
 .header {
   display: flex;
-  justify-content: space-between; /* Spac between title and logout button */
+  justify-content: space-between; /* Space between title and logout button */
   align-items: center; /* Center vertically */
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
