@@ -70,7 +70,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #56606b;
 }
 
 p {
@@ -160,7 +160,7 @@ input:focus {
 button {
   padding: 10px 15px;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color:#847b9d;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -275,7 +275,7 @@ button a{
 }
 
 form button:hover {
-  background-color: #0056b3;
+  background-color: #c5a4fb;
 }
 
 /* Notes List */
@@ -284,7 +284,15 @@ form button:hover {
   flex-direction: column;
   padding: 16px;
 }
-
+.note-card span{
+  color:darkslateblue;
+}
+.note-card h4,p{
+  color:darkred;
+}
+.note-card .date{
+  color:maroon;
+}
 .header {
   display: flex;
   justify-content: space-between; /* Space between title and logout button */

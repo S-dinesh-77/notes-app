@@ -124,9 +124,9 @@ function Notes() {
               <div className="notes-container">
                 {notes.map((note) => (
                   <div className="note-card" key={note._id}>
-                    <h3>{note.title}</h3>
-                    <p>{note.content}</p>
-                    <p>{new Date(note.date).toLocaleString()}</p>
+                    <h4><span >Note Title: </span>{note.title}</h4>
+                    <p><span>Note Content: </span>{note.content}</p>
+                    <p className='date'>{new Date(note.date).toLocaleString()}</p>
                     <div className="remove-edit">
                       <button className="edit" onClick={() => handleEditNote(note)}>
                         <FontAwesomeIcon icon={faEdit} />
