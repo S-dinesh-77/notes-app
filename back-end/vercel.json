@@ -11,12 +11,7 @@
         "src": "/(.*)",
         "dest": "index.js"
       }
-    ],
-    "env": {
-      
-      "JWT_SECRET": "@jwt_secret",
-      "APPLICATION_URL": "@application_url"
-    }
+    ]
   }
   
   
