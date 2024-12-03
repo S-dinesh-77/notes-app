@@ -28,7 +28,7 @@ function Notes() {
          
       });
       console.log(response.data)
-
+     console.log(token)
         setNotes(response.data);
       } catch (error) {
         if (error.response?.status === 401) {
