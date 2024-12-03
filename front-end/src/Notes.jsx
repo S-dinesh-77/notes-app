@@ -119,7 +119,7 @@ function Notes() {
         {!showForm && (
           <div>
             {notes.length === 0 ? (
-              <p> notes is Empty . Click "+" to add a new note.</p>
+              <p> notes is Empty  .  Click "+" to add a new note.</p>
             ) : (
               <div className="notes-container">
                 {notes.map((note) => (
