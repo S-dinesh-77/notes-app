@@ -50,7 +50,9 @@ const Note = mongoose.model('Note', NoteSchema);
 
 
 
-
+app.get('/',(req,res)=>{
+  res.send('<h1>hello</h1>')
+})
 // Routes
 app.post('/api/auth/register', async (req, res) => {
   const { username, email, password } = req.body;
