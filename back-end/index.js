@@ -13,11 +13,7 @@ dotenv.config();
 
 // Initialize app
 const app = express();
-app.use(cors({
-  origin: ['https://notes-app-client-06p2.onrender.com'],
-  credentials: true,
-}));
-
+app.use(cors());
 app.use(express.json());
 
 
@@ -55,7 +51,7 @@ const Note = mongoose.model('Note', NoteSchema);
 
 
 app.get('/',(req,res)=>{
-  res.send('<h1>hello , Welcome to my site </h1>')
+  res.send('<h1>hello , Welcome to my</h1>')
 })
 // Routes
 app.post('/api/auth/register', async (req, res) => {
