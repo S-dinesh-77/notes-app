@@ -23,7 +23,7 @@ function Notes() {
       }
     
       try {
-        const response = await axios.get('http://localhost:5000/notes', {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/notes`, {
           headers: { Authorization: `Bearer ${token}` },
          
       });
@@ -55,7 +55,7 @@ function Notes() {
     if (editingId) {
       // Update existing note
       axios
-        .put(`http://localhost:5000/notes/${editingId}`, noteWithTimestamp, {
+        .put(`${process.env.REACT_APP_BACKEND_URL}/notes/${editingId}`, noteWithTimestamp, {
           headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
         })
         .then((response) => {
@@ -68,7 +68,7 @@ function Notes() {
     } else {
       // Create new note
       axios
-        .post('http://localhost:5000/notes', noteWithTimestamp, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}/notes`, noteWithTimestamp, {
           headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
         })
         .then((response) => {
@@ -88,7 +88,7 @@ function Notes() {
 
   const handleDeleteNote = (id) => {
     axios
-      .delete(`http://localhost:5000/notes/${id}`, {
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/notes/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
       })
       .then(() => {
