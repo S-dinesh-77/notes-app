@@ -11,7 +11,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/register`, formData);
-      navigate('/'); // Redirect to login
+      navigate('/login'); // Redirect to login
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
@@ -53,7 +53,7 @@ const Register = () => {
       </form>
       {error && <p className="error">{error}</p>}
       <p>
-        Already have an account? <Link to="/">Log in</Link>
+        Already have an account? <Link to="/login">Log in</Link>
       </p>
     </div>
   );

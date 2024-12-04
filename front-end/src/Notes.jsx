@@ -18,7 +18,7 @@ function Notes() {
       const token = localStorage.getItem('authToken');
       if (!token) {
         console.error('No token found, redirecting to login');
-        navigate('/');
+        navigate('/login');
         return;
       }
     
