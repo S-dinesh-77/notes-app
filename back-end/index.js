@@ -99,10 +99,13 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 const authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const authHeader = req.headers.authorization;
+  console.log('Authorization Header:', authHeader); // Log the authorization header
+  
+  const token = authHeader?.split(' ')[1];
   if (!token) {
-    console.error('Token missing');
-    return res.status(401).json({ message: 'Token missing' });
+    console.error('Token missing or improperly formatted');
+    return res.status(401).json({ message: 'Token missing or improperly formatted' });
   }
 
   jwt.verify(token, process.env.JWT_SECRET || 'default_secret', (err, user) => {
@@ -110,7 +113,7 @@ const authenticate = (req, res, next) => {
       console.error('Token verification error:', err.message);
       return res.status(403).json({ message: 'Invalid or expired token' });
     }
-    req.user = user; // Should include userId
+    req.user = user; // Attach user data to request
     next();
   });
 };
