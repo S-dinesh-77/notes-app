@@ -18,7 +18,7 @@ function Notes() {
       const token = localStorage.getItem('authToken');
       if (!token) {
         console.error('No token found, redirecting to login');
-        navigate('/login');
+        navigate('/');
         return;
       }
     
@@ -33,7 +33,7 @@ function Notes() {
       } catch (error) {
         if (error.response?.status === 401) {
           console.error('Unauthorized: Please login again.');
-          navigate('/login'); // Redirect to login if unauthorized
+          navigate('/'); // Redirect to login if unauthorized
         } else {
           console.error('Error fetching notes:', error);
         }
@@ -109,7 +109,7 @@ function Notes() {
         <h1>Notes</h1>
         <div className="login-logout">
           <button className="login-btn">
-            <Link to="/login">Log in</Link>
+            <Link to="/">Log in</Link>
           </button>
           <Logout />
         </div>
