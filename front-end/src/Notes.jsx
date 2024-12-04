@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Logout from './Logout'; // Assuming this is the logout component you have
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faPencil } from '@fortawesome/free-solid-svg-icons';
-
+import "./Notes.css"
 function Notes() {
   const [notes, setNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState({ title: '', content: '' });
@@ -106,7 +106,7 @@ function Notes() {
   return (
     <div className="notes-page">
       <div className="header">
-        <h1>Notes</h1>
+        <h1>Notes APP</h1>
         <div className="login-logout">
           <button className="login-btn">
             <Link to="/">Log in</Link>
@@ -124,7 +124,7 @@ function Notes() {
               <div className="notes-container">
                 {notes.map((note) => (
                   <div className="note-card" key={note._id}>
-                    <h4><span >Note Title: </span>{note.title}</h4>
+                    <h4><span >Note Title: </span >{note.title}</h4>
                     <p><span>Note Content: </span>{note.content}</p>
                     <p className='date'>{new Date(note.date).toLocaleString()}</p>
                     <div className="remove-edit">

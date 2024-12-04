@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import "./Notes.css"
 const Logout = () => {
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -8,7 +8,7 @@ const Logout = () => {
         navigate('/');  // Redirect to login page
       };
   return (
-    <div className='logout'><button  className='logout' onClick={handleLogout}>Logout</button></div>
+    <div className='logout'><button  className='logout-btn' onClick={handleLogout}>Logout</button></div>
   )
 }
 

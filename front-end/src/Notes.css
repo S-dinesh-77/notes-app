@@ -1,0 +1,267 @@
+/* Notes List */
+.notes-page {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+  .note-card span{
+    color:rgb(44, 89, 87);
+  }
+  .note-card h4,p{
+    color:rgb(44, 89, 87);
+  }
+ 
+  .header {
+    display: flex;
+    justify-content: space-between; /* Space between title and logout button */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  .login-logout{
+    display: flex;
+    gap: 10px;
+  
+  }
+  .login-btn a{
+    text-decoration: none;
+    color: white;
+  }
+  .header h1 {
+    margin: 0 10px;
+  }
+  
+  .logout button ,.login-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+   
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .logout-btn {
+    background-color: #4CAF50;
+  }
+  .logout-btn:hover{
+    background-color: #c5a4fb;
+  }
+  .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+  
+  }
+  
+  .note-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 250px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 3s;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Space between text and buttons */
+    align-items: flex-start;
+  }
+  
+  .note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: rgb(241, 229, 240);
+  }
+  
+  .note-card h4,p{
+    color: #82468e;
+    align-items: flex-start;
+    display: flex;
+   
+  }
+  .note-content p{
+    font-size: 14px;
+    color: #82468e;
+  }
+  
+  .date {
+    color: #82468e;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  
+  .edit,.delete {
+    width: 40%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color:black;
+    background-color: #6ae77d;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-edit{
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    width: 100%; /* Ensure buttons span the width of the card */
+    margin-top: 16px;
+    gap: 20px;
+  }
+  .note-card button:hover {
+    background-color: #2c753c;
+    color: white;
+  }
+  
+  .note-card button.delete {
+    background-color: #fc5c5c;
+  }
+  
+  .note-card button.delete:hover {
+    background-color: #c82333;
+  }
+  
+  /* Add New Note (+) Button */
+  .add-note-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color:white;
+    color: black;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .add-note-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .login{
+    color: white;
+  }
+  .logout button{
+    text-decoration: none;
+  }
+  /* Responsive Design */
+  
+  /* General Adjustments for Small Screens */
+  @media (max-width: 768px) {
+    .notes-page {
+      padding: 10px; /* Reduce padding for smaller screens */
+    }
+  
+    .header h1 {
+      font-size: 1.5rem; /* Adjust header font size */
+    }
+  
+    .login-logout {
+      flex-direction: row; /* Stack login and logout buttons vertically */
+      gap: 5px;
+    }
+  
+    form input,
+    form textarea,
+    .note-btn {
+      width: 100%; /* Make inputs and buttons take full width */
+      font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+  
+    .note-card {
+      width: 100%; /* Make notes take full width on smaller screens */
+    }
+  
+    .add-note-button {
+      width: 50px;
+      height: 50px;
+      font-size: 20px; /* Adjust size for smaller screens */
+    }
+  
+    .notes-container {
+      padding: 10px; /* Reduce padding for smaller screens */
+      gap: 10px; /* Reduce gap between notes */
+    }
+  }
+  
+  /* Very Small Screens (Mobile) */
+  @media (max-width: 480px) {
+    .header {
+      flex-direction: column; /* Stack header elements vertically */
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .header h1 {
+      font-size: 1.2rem; /* Further reduce header font size */
+      text-align: center; /* Center-align header text */
+    }
+  .login-logout button, a{
+    font-size: 14px;
+  }
+    .note-card {
+      padding: 10px; /* Reduce padding inside notes */
+      font-size: 0.8rem; /* Adjust font size inside notes */
+    }
+  
+    .note-card h3 {
+      font-size: 1rem; /* Adjust title font size */
+    }
+  
+    .edit,
+    .delete {
+      font-size: 0.8rem; /* Smaller font size for buttons */
+      padding: 5px 8px; /* Smaller padding for buttons */
+    }
+  
+    .add-note-button {
+      bottom: 15px;
+      right: 15px;
+      width: 45px;
+      height: 45px;
+      font-size: 18px; /* Smaller icon size */
+    }
+  
+    .notes-container {
+      flex-direction: column; /* Stack notes vertically */
+    }
+  }
+  
+  /* Animation */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+  .notes-container .note-card {
+    animation: slideIn 0.5s ease forwards;
+  }
+  
