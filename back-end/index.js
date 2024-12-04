@@ -13,7 +13,7 @@ dotenv.config();
 
 // Initialize app
 const app = express();
-app.use(cors("https://notes-app-client-06p2.onrender.com/notes"));
+app.use(cors());
 app.use(express.json());
 
 
