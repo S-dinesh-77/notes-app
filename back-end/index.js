@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -58,7 +58,7 @@ app.post('/api/auth/register', async (req, res) => {
     return res.status(400).json({ message: 'All fields are required' });
   }
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const user = new User({ username, email, password: hashedPassword });
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
@@ -84,7 +84,7 @@ app.post('/api/auth/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
