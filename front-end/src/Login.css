@@ -1,21 +1,32 @@
 /* Styles for login and register animations */
+
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+   
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   }
   
   .login-container,
   .signup-form {
-    width: 300px;
+    max-width: 400px;
+    width:100%;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background: rgb(2,0,36);
+    background: linear-gradient(155deg, rgba(2,0,36,1) 0%, rgba(123,196,206,1) 35%, rgba(83,169,187,1) 100%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(30px);
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+    align-items: center;
     animation: slide-in 0.5s ease-out forwards;
   }
   
@@ -61,26 +72,18 @@
   p {
     text-align: center;
     margin-top: 20px;
+    color: #1a1e1a;
   }
   
   a {
-    color: #4CAF50;
+    color:crimson;
     text-decoration: none;
   }
   
   a:hover {
     text-decoration: underline;
   }
-  .container {
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+
   h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -144,10 +147,7 @@
     margin-top: 15px;
   }
   
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
+ 
   
   a:hover {
     text-decoration: underline;
@@ -155,3 +155,63 @@
   form button:hover {
     background-color: #c5a4fb;
   }
+
+
+/* Mobile Devices (up to 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 20px;
+  }
+
+  .login-container,
+  .signup-form {
+    width: 90%;
+    padding: 15px;
+    transform: translateY(20px); /* Adjust animation for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 460px) {
+
+  input,
+  button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  .input-wrapper{
+    height: 30px;
+    font-size: 15px;
+  }
+    
+  .input-icon{
+    font-size: 15px;
+  }
+}
+/* Laptops (1024px and up) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .login-container,
+  .signup-form {
+    width: 400px;
+    padding: 25px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  input,
+  button {
+    font-size: 1.1rem;
+  }
+}
+

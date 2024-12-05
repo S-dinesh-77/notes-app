@@ -3,13 +3,15 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Logout from './Logout'; // Assuming this is the logout component you have
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faPencil,faBars } from '@fortawesome/free-solid-svg-icons';
 import "./Notes.css"
 function Notes() {
   const [notes, setNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState({ title: '', content: '' });
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const navigate = useNavigate();
 
   // Fetch notes when the component mounts
@@ -102,19 +104,34 @@ function Notes() {
     setEditingId(null);
     setShowForm(true);
   };
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
 
+  const closeMenu = () => {
+    setMenuVisible(false);
+  };
   return (
     <div className="notes-page">
       <div className="header">
         <h1>Notes APP</h1>
-        <div className="login-logout">
-          <button className="login-btn">
-            <Link to="/">Log in</Link>
-          </button>
-          <Logout />
+        
+        <div className="burger-menu">
+          <FontAwesomeIcon icon={faBars} onClick={toggleMenu} />
         </div>
+        <div className={`login-logout ${menuVisible ? 'visible' : ''}`}>
+        <button className="login-btn">
+          <Link to="/">Log in</Link>
+        </button>
+        <Logout />
+      </div>
       </div>
 
+      {/* Overlay */}
+      {menuVisible && <div className="overlay" onClick={closeMenu}></div>}
+
+      {/* Sliding Menu */}
+     
       <div className="notes-content">
         {!showForm && (
           <div>
@@ -146,7 +163,7 @@ function Notes() {
         )}
 
         {showForm && (
-          <form>
+          <form className='note-form'>
             <input
               className="form-input"
               type="text"

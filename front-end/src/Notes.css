@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     padding: 16px;
+    justify-content: flex-start;
+    height: 100vh;
+    position: relative;
+    
+    overflow: hidden;
   }
   .note-card span{
     color:rgb(44, 89, 87);
@@ -18,6 +23,12 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
+    flex-direction: row;
+  }
+  .burger-menu {
+    display: none; /* Hidden by default */
+    font-size: 1.5rem;
+    cursor: pointer;
   }
   .login-logout{
     display: flex;
@@ -47,6 +58,12 @@
   .logout-btn:hover{
     background-color: #c5a4fb;
   }
+
+  .notes-content{
+    display: flex;
+    
+    justify-content: center;
+  }
   .notes-container {
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +72,22 @@
     align-items: flex-start;
   
   }
-  
+  .note-form{
+    max-width: 200px;
+    width:100%;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgb(2,0,36);
+    background: linear-gradient(155deg, rgba(2,0,36,1) 0%, rgba(123,196,206,1) 35%, rgba(83,169,187,1) 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(30px);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slide-in 0.5s ease-out forwards;
+  }
   .note-card {
     background: white;
     border-radius: 10px;
@@ -70,7 +102,16 @@
     justify-content: space-between; /* Space between text and buttons */
     align-items: flex-start;
   }
-  
+  input,
+ textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+   
+    font-size: 1rem;
+  }
   .note-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -79,11 +120,11 @@
   
   .note-card h4,p{
     color: #82468e;
-    align-items: flex-start;
+    
     display: flex;
    
   }
-  .note-content p{
+  .notes-content p{
     font-size: 14px;
     color: #82468e;
   }
@@ -104,7 +145,7 @@
     border: none;
     cursor: pointer;
     color:black;
-    background-color: #6ae77d;
+    background-color: #c9d6cb;
     transition: background-color 0.3s ease;
   }
   
@@ -183,11 +224,12 @@
     }
   
     .note-card {
+      text-align: center;
       width: 100%; /* Make notes take full width on smaller screens */
     }
   
     .add-note-button {
-      width: 50px;
+    
       height: 50px;
       font-size: 20px; /* Adjust size for smaller screens */
     }
@@ -200,10 +242,47 @@
   
   /* Very Small Screens (Mobile) */
   @media (max-width: 480px) {
+
+    /* Overlay Styles */
+     .overlay {
+     position: fixed;
+     top: 0;
+     left: 20%;
+     width: 100vw;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
+     z-index: 1000;
+     animation: fadeIn 0.3s ease-in-out;
+   }
+
+      .burger-menu {
+        display: block; /* Show burger icon */
+        cursor: pointer;
+      }
+    
+      .login-logout {
+        display: none; /* Hide menu by default */
+        flex-direction: column;
+        
+        z-index: 1100;
+        transition: right 0.3s ease-in-out;
+        position: absolute;
+        top: 0px; /* Position below header */
+        right: 40px;
+        gap: 0px;
+        padding: 1rem;
+        
+       
+      }
+    
     .header {
-      flex-direction: column; /* Stack header elements vertically */
+      flex-direction: row; /* Stack header elements vertically */
       align-items: center;
       gap: 10px;
+    }
+    .login-logout.visible {
+      display: flex;
+      
     }
   
     .header h1 {
