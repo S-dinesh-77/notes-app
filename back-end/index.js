@@ -4,6 +4,9 @@ import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import responseTime from 'response-time';
+import compression from 'compression';
+
 
 
 
@@ -16,13 +19,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
+app.use(responseTime());
+app.use(compression());
 // MongoDB Connection
 const connectDB = async () => {
   try {
     await mongoose.connect("mongodb+srv://dinesh7733:Z2gl60xBDNgqVmSj@notesapp.8k68x.mongodb.net/?retryWrites=true&w=majority&appName=NotesApp", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      maxPoolSize: 10,
     });
     console.log('MongoDB Connected');
   } catch (err) {
@@ -120,10 +125,9 @@ const authenticate = (req, res, next) => {
   });
 };
 
-// Notes Routes
 app.get('/notes', authenticate, async (req, res) => {
   try {
-    const notes = await Note.find({ userId: req.user.userId });
+    const notes = await Note.find({ userId: req.user.userId }).lean(); // Use `lean` for faster queries
     res.json(notes);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch notes', error: err.message });
