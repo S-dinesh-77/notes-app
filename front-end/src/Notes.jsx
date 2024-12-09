@@ -77,6 +77,7 @@ function Notes() {
           setNotes([...notes, response.data]);
           setCurrentNote({ title: '', content: '' });
           setShowForm(false);
+          
         })
         .catch((error) => console.error('Error adding note:', error));
     }

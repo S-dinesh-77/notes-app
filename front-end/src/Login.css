@@ -17,7 +17,7 @@
     padding: 20px;
     border-radius: 10px;
     background: rgb(2,0,36);
-    background: linear-gradient(155deg, rgba(2,0,36,1) 0%, rgba(123,196,206,1) 35%, rgba(83,169,187,1) 100%);
+    background: linear-gradient(155deg, rgb(177, 176, 201) 0%, rgb(194, 205, 207) 35%, rgb(186, 241, 255) 100%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(30px);
     opacity: 0;
