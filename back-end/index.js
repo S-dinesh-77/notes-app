@@ -21,21 +21,19 @@ app.use(express.json());
 
 app.use(responseTime());
 app.use(compression());
-// MongoDB Connection
-const connectDB = async () => {
-  try {
-    await mongoose.connect("mongodb+srv://dinesh7733:Z2gl60xBDNgqVmSj@notesapp.8k68x.mongodb.net/?retryWrites=true&w=majority&appName=NotesApp", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      maxPoolSize: 10,
-    });
-    console.log('MongoDB Connected');
-  } catch (err) {
-    console.error('Database connection error:', err.message);
-    process.exit(1);
-  }
-};
-connectDB();
+
+
+const uri = process.env.MONGO_URI;
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch(err => console.error("Error connecting to MongoDB:", err));
+
+
+
 
 // Models
 const UserSchema = new mongoose.Schema({
@@ -96,9 +94,9 @@ app.post('/api/auth/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Use the JWT_SECRET or fallback value
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET || 'default_secret', { expiresIn: '1h' });
     res.json({ token });
+    
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ message: 'Server error. Please try again later.' });
@@ -107,7 +105,7 @@ app.post('/api/auth/login', async (req, res) => {
 
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log('Authorization Header:', authHeader); // Log the authorization header
+  console.log('Authorization Header:', authHeader); // Debug the incoming header
   
   const token = authHeader?.split(' ')[1];
   if (!token) {
@@ -124,6 +122,7 @@ const authenticate = (req, res, next) => {
     next();
   });
 };
+
 
 app.get('/notes', authenticate, async (req, res) => {
   try {
